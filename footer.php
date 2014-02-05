@@ -18,10 +18,9 @@
 			<div class="site-footer-inner col-sm-12">
 			
 				<div class="site-info">
-					<?php do_action( '_tk_credits' ); ?>
 					<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', '_tk' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', '_tk' ), 'WordPress' ); ?></a>
 					<span class="sep"> | </span>
-					<?php printf( __( 'Theme: %1$s by %2$s.', '_tk' ), '_tk', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
+					<span class="copyright">&copy; <?php bloginfo('name');  ?>  all rights reserved </span>
 				</div><!-- close .site-info -->
 			
 			</div>	
