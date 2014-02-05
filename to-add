@@ -1,0 +1,12 @@
+ // complete stylesheet
+    wp_enqueue_style( 'ia-primary', get_template_directory_uri() . '/includes/css/style.css' );
+
+    // load ia styles
+    wp_enqueue_style( 'ia-style', get_stylesheet_uri() );
+
+    // load ia styles
+    wp_enqueue_style( 'ia-fontawesome', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' );
+
+    // Load google font
+
+    wp_enqueue_style('ia-gfont', '//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Ubuntu:500|Raleway:600,400' );

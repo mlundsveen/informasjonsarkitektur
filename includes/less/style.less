@@ -1,0 +1,22 @@
+@import "/bootstrap/bootstrap.less";
+
+/* Base template */ 
+@import "mixins.less";
+@import "variables.less";
+@import "base.less";
+//@import "theme.less";
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+	@import "_768up.less";
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	@import "_992up.less";
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	@import "_1200up.less";
+}
