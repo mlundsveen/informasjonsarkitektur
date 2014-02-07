@@ -85,6 +85,14 @@ function _tk_widgets_init() {
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
+	register_sidebar( array(
+		'name'          => __( 'Sidebar', '_tk' ),
+		'id'            => 'sidebar-2',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
 }
 add_action( 'widgets_init', '_tk_widgets_init' );
 
@@ -153,3 +161,13 @@ require get_template_directory() . '/includes/jetpack.php';
  * Load custom WordPress nav walker.
  */
 require get_template_directory() . '/includes/bootstrap-wp-navwalker.php';
+
+/**
+* Read More tag
+*/
+
+function new_excerpt_more($more) {
+       global $post;
+    return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read more <i class="fa fa-chevron-circle-right"></i></a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');   
