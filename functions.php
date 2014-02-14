@@ -170,4 +170,99 @@ function new_excerpt_more($more) {
        global $post;
     return '<a class="moretag" href="'. get_permalink($post->ID) . '"> Read more <i class="fa fa-chevron-circle-right"></i></a>';
 }
-add_filter('excerpt_more', 'new_excerpt_more');   
+add_filter('excerpt_more', 'new_excerpt_more'); 
+
+function the_breadcrumb() {
+        echo '<ul id="breadcrumbs">';
+    if (!is_home()) {
+        echo '<li><a href="';
+        echo get_option('home');
+        echo '">';
+        echo 'Home';
+        echo '</a></li><li class="separator"> <i class="fa fa-angle-right"> </i></li>';
+        if (is_category() || is_single()) {
+            echo '<li>';
+            the_category(' </li><li class="separator"> <i class="fa fa-angle-right"></i> </li><li> ');
+            if (is_single()) {
+                echo '</li><li class="separator"> <i class="fa fa-angle-right"></i> </li><li>';
+                the_title();
+                echo '</li>';
+            }
+        } elseif (is_page()) {
+            if($post->post_parent){
+                $anc = get_post_ancestors( $post->ID );
+                 
+                foreach ( $anc as $ancestor ) {
+                    $output = '<li><a href="'.get_permalink($ancestor).'" title="'.get_the_title($ancestor).'">'.get_the_title($ancestor).'</a></li> <li class="separator">/</li>';
+                }
+                echo $output;
+                echo '<strong title="'.$title.'"> '.$title.'</strong>';
+            } else {
+                echo '<strong> ';
+                echo the_title();
+                echo '</strong>';
+            }
+        }
+    }
+    elseif (is_tag()) {single_tag_title();}
+    elseif (is_day()) {echo"<li>Archive for "; the_time('F jS, Y'); echo'</li>';}
+    elseif (is_month()) {echo"<li>Archive for "; the_time('F, Y'); echo'</li>';}
+    elseif (is_year()) {echo"<li>Archive for "; the_time('Y'); echo'</li>';}
+    elseif (is_author()) {echo"<li>Author Archive"; echo'</li>';}
+    elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {echo "<li>Blog Archives"; echo'</li>';}
+    elseif (is_search()) {echo"<li>Search Results"; echo'</li>';}
+    echo '</ul>';
+} 
+
+function the_breadcrumbs() {
+ 
+        global $post;
+ 
+        if (!is_home()) {
+ 
+            echo "<a href='";
+            echo get_option('home');
+            echo "'>";
+            echo "Home";
+            echo "</a>";
+ 
+            if (is_category() || is_single()) {
+ 
+                echo " > ";
+                $cats = get_the_category( $post->ID );
+ 
+                foreach ( $cats as $cat ){
+                    echo $cat->cat_name;
+                    echo " > ";
+                }
+                if (is_single()) {
+                    the_title();
+                }
+            } elseif (is_page()) {
+ 
+                if($post->post_parent){
+                    $anc = get_post_ancestors( $post->ID );
+                    $anc_link = get_page_link( $post->post_parent );
+ 
+                    foreach ( $anc as $ancestor ) {
+                        $output = " > <a href=".$anc_link.">".get_the_title($ancestor)."</a> > ";
+                    }
+ 
+                    echo $output;
+                    the_title();
+ 
+                } else {
+                    echo ' > ';
+                    echo the_title();
+                }
+            }
+        }
+    elseif (is_tag()) {single_tag_title();}
+    elseif (is_day()) {echo"Archive: "; the_time('F jS, Y'); echo'</li>';}
+    elseif (is_month()) {echo"Archive: "; the_time('F, Y'); echo'</li>';}
+    elseif (is_year()) {echo"Archive: "; the_time('Y'); echo'</li>';}
+    elseif (is_author()) {echo"Author's archive: "; echo'</li>';}
+    elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {echo "Blogarchive: "; echo'';}
+    elseif (is_search()) {echo"Search results: "; }
+}
+

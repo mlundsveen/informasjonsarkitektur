@@ -5,6 +5,11 @@
  * @package _tk
  */
 ?>
+<div class="breadcrumbs">
+	<?php if (!is_home()) { ?>
+		<?php if(function_exists('the_breadcrumbs')) the_breadcrumbs(); ?>
+	<?php } ?>
+</div>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="page-header">

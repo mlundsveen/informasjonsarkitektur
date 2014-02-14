@@ -19,57 +19,48 @@
 
 <body <?php body_class(); ?>>
 	<?php do_action( 'before' ); ?>
-<div id="top-all" class="container">	
-    <div class="row">
-        <header id="masthead" class="site-header col-sm-6 pull-left" role="banner">
-            <div class="container">
-                <div class="row">
-                    <div class="site-header-inner">
-                                            
-                        <div class="site-branding">
-                            <img src="<?php echo get_stylesheet_directory_uri() . '/includes/img/logo.png'; ?>">
+<div id="top-all">
+    <div class="container">	
+        <div class="row">
+            <header id="masthead" class="site-header col-sm-3 pull-left" role="banner">
+                        <div class="site-header-inner">
+                                                
+                            <div class="site-branding">
+                                <img src="<?php echo get_stylesheet_directory_uri() . '/includes/img/logo.png'; ?>">
+                            </div>
+                                    
                         </div>
+            </header><!-- #masthead -->
+                    
+            <nav class="site-navigation col-sm-9 pull-right">		
+                        <div class="site-navigation-inner">
+                            <div class="navbar navbar-default">
+                                <div class="navbar-header">
+                                <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                </button>                 
+                            </div>
                                 
-                    </div>
-                </div>
-            </div><!-- .container -->
-        </header><!-- #masthead -->
-                
-        <nav class="site-navigation">		
-            <div class="container">
-                <div class="row">
-                    <div class="site-navigation-inner col-sm-6 pull-right">
-                        <div class="navbar navbar-default">
-                            <div class="navbar-header">
-                            <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                            </button>
-                        
-                            <!-- Your site title as branding in the menu -->
-                            <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-                          </div>
+                            <!-- The WordPress Menu goes here -->
+                        <?php wp_nav_menu(
+                            array(
+                                'theme_location' => 'primary',
+                                'container_class' => 'collapse navbar-collapse navbar-responsive-collapse col-sm-6',
+                                'menu_class' => 'nav navbar-nav',
+                                'fallback_cb' => '',
+                                'menu_id' => 'main-menu',
+                                'walker' => new wp_bootstrap_navwalker()
+                            )
+                        ); ?>
                             
-                        <!-- The WordPress Menu goes here -->
-                    <?php wp_nav_menu(
-                        array(
-                            'theme_location' => 'primary',
-                            'container_class' => 'collapse navbar-collapse navbar-responsive-collapse col-sm-6',
-                            'menu_class' => 'nav navbar-nav',
-                            'fallback_cb' => '',
-                            'menu_id' => 'main-menu',
-                            'walker' => new wp_bootstrap_navwalker()
-                        )
-                    ); ?>
-                        
-                        </div><!-- .navbar -->
-                    </div>
-                </div>
-            </div><!-- .container -->
-        </nav><!-- .site-navigation -->
+                            </div><!-- .navbar -->
+                        </div>
+            </nav><!-- .site-navigation -->
+        </div>
     </div>
 </div>
 <div class="main-content">	
