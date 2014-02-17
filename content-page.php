@@ -5,11 +5,6 @@
  * @package _tk
  */
 ?>
-<div class="breadcrumbs">
-	<?php if (!is_home()) { ?>
-		<?php if(function_exists('the_breadcrumbs')) the_breadcrumbs(); ?>
-	<?php } ?>
-</div>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="page-header">
@@ -18,6 +13,7 @@
 
 	<div class="entry-content">
 		<?php the_content(); ?>
+		<?php the_t
 		<?php
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . __( 'Pages:', '_tk' ),
